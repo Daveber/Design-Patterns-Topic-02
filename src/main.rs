@@ -1,15 +1,82 @@
 fn main() {
-    let mut number: u8 = 0b0101_0101;
-
-    println!("Number is {number} binary is {number:08b}");
-
-    let number_left4 = number << 4;
-    println!("Number is {number_left4} \t binary is {number_left4:08b} when shifted left 4");
-
-    let number_right4 = number >> 4;
-    println!("Number is {number_right4} \t Binary is {number_right4:08b} when shifted right 4");
+    //println!("The number is : {}" , is_even(501));
+    //let (result, long_string)  = calculate(1 as f64, 1 as f64, "*");
+    //println!("result: {result} {long_string}");
+    //fizzBuzz();
+    println!("is prime: {}", is_prime(29));
 }
 
-fn type_of<T>(_: &T) -> &str {
-        return std::any::type_name::<T>()
+//Exercise 1: check if number is even or odd
+fn is_even(number: i32) -> bool {
+    if (number % 2) == 0 {
+        true
+    } else {
+        false
+    }
+}
+
+
+//Exercise 2: simple calculator
+fn calculate(a: f64, b: f64, operator: &str) -> (f64, String) {
+    let mut result = 0.0;
+
+    if operator == "+" {
+        result = a + b;
+        (result, "Success".to_string())
+    } else if operator == "-" {
+        result = a - b;
+        (result, "Success".to_string())
+    } else if operator == "*" {
+        result = a * b;
+        (result, "Success".to_string())
+    } else if operator == "/" {
+        result = a / b;
+        (result, "Success".to_string())
+    } else {
+        (result, "Failure".to_string())
+    }
+}
+
+//Exercise 3: Fizz Buzz
+fn fizzBuzz() {
+    let mut counter = 1;
+
+    while counter <= 100 {
+        if (counter % 3) == 0 && (counter % 5) == 0 {
+            println!("FizzBuzz");
+
+        } else if (counter % 3) == 0 {
+            println!("Fizz");
+
+        } else if (counter % 5) == 0 {
+            println!("Buzz");
+
+        } else {
+            println!("{counter}");
+        } 
+        counter +=1;
+    }
+}
+
+//Exercise 4: Prime Checker
+fn is_prime(number: u32) -> bool {
+    
+    let mut division_counter = 0;
+
+    if number <= 1 {
+        return false;
+
+    } else {
+        for i in 1..=number {
+            if (number % i) == 0 {
+                division_counter+=1;                
+            }
+        }
+    }
+
+    if division_counter > 2 {
+        return false;
+    } else {
+        return true;
+    }
 }
